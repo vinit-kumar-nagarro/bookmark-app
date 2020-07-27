@@ -1,0 +1,14 @@
+<div class="col-container">
+    <tr>
+        <td>{{bookmark.name}}</td>
+        <td>{{bookmark.url}}</td>
+        <td>
+            <button mat-icon-button (click)="editBookmark()">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="onDeleteBookmark()">
+                <mat-icon>delete_outline</mat-icon>
+            </button>
+        </td>
+    </tr>
+</div>

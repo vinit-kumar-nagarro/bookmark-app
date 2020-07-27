@@ -1,0 +1,20 @@
+.bookmark-container {
+  height: 350px;
+  overflow: auto;
+}
+
+.add-button {
+  margin-left: 20px;
+}
+
+.search-container {
+  width: 500px;
+
+  .mat-input {
+    width: 100%;
+  }
+
+  .mat-icon{
+      position: absolute;
+  }
+}

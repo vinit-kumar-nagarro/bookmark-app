@@ -1,0 +1,10 @@
+<h2>Fevourite</h2>
+<mat-list>
+    <mat-list-item *ngFor="let bookmark of favourits">
+        <app-boomark-item [bookmark]="bookmark" (updateBookmark)="onUpdateBookmark($event)"
+            (deleteBookmark)="onDeleteBookmark($event)"></app-boomark-item>
+    </mat-list-item>
+    <mat-list-item *ngIf="!favourits.length">
+        No Data found
+    </mat-list-item>
+</mat-list>

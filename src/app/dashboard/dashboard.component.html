@@ -1,0 +1,31 @@
+<h2> Bookmarks </h2>
+<mat-form-field>
+    <mat-label>Select Folder</mat-label>
+    <mat-select [(value)]="selectedFolder" (selectionChange)="getBookmarks()">
+        <mat-option *ngIf="showLocalDefault" value="">Default</mat-option>
+        <mat-option *ngFor="let folder of folders; let i=index;" [value]="folder._id">
+            {{folder.name}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+<button class="add-button" mat-raised-button color="primary" (click)="addBookmark()">
+    <mat-icon>add</mat-icon> Add Bookmark
+</button>
+
+<p>
+    <mat-form-field class="search-container">
+        <mat-label>Search bookmark</mat-label>
+        <input matInput name="folderName" [(ngModel)]="searchText">
+        <mat-icon>search</mat-icon>
+    </mat-form-field>
+</p>
+<mat-list class="bookmark-container">
+    <div mat-subheader>Bookmarks</div>
+    <mat-list-item *ngFor="let bookmark of bookmarks | filterByName: searchText">
+        <app-boomark-item [bookmark]="bookmark" (updateBookmark)="onUpdateBookmark($event)"
+            (deleteBookmark)="onDeleteBookmark($event)"></app-boomark-item>
+    </mat-list-item>
+    <mat-list-item *ngIf="!bookmarks.length">
+        No Data found
+    </mat-list-item>
+</mat-list>

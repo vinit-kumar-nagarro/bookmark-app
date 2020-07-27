@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>Bookmark</h1>
+<form #f="ngForm" (ngSubmit)="f.valid && save()">
+    <div class="bookmark-container" mat-dialog-content>
+        <p>
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput name="name" [(ngModel)]="data.bookmark.name" #name="ngModel" required>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <mat-label>Url</mat-label>
+                <input matInput name="url" [(ngModel)]="data.bookmark.url" #url="ngModel" required>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <mat-label>Select Folder</mat-label>
+                <mat-select [(value)]="data.bookmark.folderId" (selectionChange)="onSelectFolder()">
+                    <mat-option value=""></mat-option>
+                    <mat-option *ngFor="let folder of data.folderList;" [value]="folder._id">
+                        {{folder.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <mat-label>Folder Name</mat-label>
+                <input matInput name="folderName" [(ngModel)]="data.bookmark.folderName" #folderName="ngModel" [attr.disabled]="data.bookmark.folderId">
+                <mat-hint align="start" *ngIf="!data.bookmark.folderId"><strong>Create new folder</strong> </mat-hint>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-checkbox color="primary" name="favourite" [(ngModel)]="data.bookmark.favourite">Mark as favourite
+            </mat-checkbox>
+        </p>
+    </div>
+    <div class="action-container" mat-dialog-actions>
+        <button type="submit" mat-flat-button color="primary">Save</button>
+        <button type="button" mat-stroked-button (click)="dialogRef.close()">Cancel</button>
+    </div>
+</form>
